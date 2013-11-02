@@ -11,11 +11,10 @@
     <script>
         less = {env:'development'}; 
     </script>
-    <script src="/js/less/less.js" type="text/javascript"></script>
+    <script src="/js/base/less/less.js" type="text/javascript"></script>
     
 
-    <script type="text/javascript" src="/js/js-base/lib/jQuery/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="/js/js-base/lib/jQuery/jquery-ui-transitions-1.8.21.min.js"></script>
+    <script type="text/javascript" src="/js/base/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
