@@ -15,6 +15,7 @@
     
 
     <script type="text/javascript" src="/js/base/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/base/jquery/qunit.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
