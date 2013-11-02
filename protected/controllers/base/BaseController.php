@@ -15,7 +15,6 @@ class BaseController extends CController {
         return array(
             'beforeBaseExec',
             'afterBaseExec',
-            'beforeExec'
         );
     }
 
@@ -29,10 +28,6 @@ class BaseController extends CController {
     }
 
     public function filterAfterBaseExec($filterChain) {
-        $filterChain->run();
-    }
-
-    public function filterBeforeExec($filterChain) {
         $filterChain->run();
     }
 
@@ -64,7 +59,7 @@ class BaseController extends CController {
         }
     }
 
-    public function renderPartial($view, $data = null, $return = false) {
+    public function renderPartial($view,$data=null,$return=false,$processOutput=false) {
         return parent::renderPartial($view, array_merge($this->data, $data != null ? $data : array()), $return);
     }
 
