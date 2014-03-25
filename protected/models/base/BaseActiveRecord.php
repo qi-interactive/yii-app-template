@@ -30,15 +30,21 @@ class BaseActiveRecord extends CActiveRecord {
     private function manageDates() {
 
         if ($this->hasAttribute("DateCreated") && 
-                $this->DateCreated == null && $this->getIsNewRecord()) {
+            $this->DateCreated == null && $this->getIsNewRecord()) {
             $this->DateCreated = new CDbExpression("NOW()");
-        }
+    }
 
         if ($this->hasAttribute("DateModified") && 
-                $this->DateModified == null)
+            $this->DateModified == null)
             $this->DateModified = new CDbExpression("NOW()");
     }
 
+    public function getFirstError() {
+        if ($this->hasErrors()) {
+            $errors = $this->getErrors();
+            return current(current($errors));
+        }
+    }
 }
 
 ?>

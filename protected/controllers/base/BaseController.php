@@ -15,7 +15,7 @@ class BaseController extends CController {
         return array(
             'beforeBaseExec',
             'afterBaseExec',
-        );
+            );
     }
 
     public function actionIndex() {
