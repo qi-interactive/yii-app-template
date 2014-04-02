@@ -1,78 +1,77 @@
-qi = window.qi || {};
-qi.widget = qi.widget || {};
-qi.widget.web = qi.widget.web || {};
-qi.widget.web.slider = {};
+(function ( $ ) {
 
-var container; 
-var leftPaging;
-var rightPaging;
-var totalWidthOfContent;
+	var methods = {
+		init : function(options) {
+			this.slider = this.find(".web-slider-slider");
+			this.leftPaging = this.find(".web-slider-paging.left");
+			this.rightPaging = this.find(".web-slider-paging.right");
+			totalWidthOfContent = 0; 
+			var that = this;
+			this.find(".page").each(function(i, el) {
+				that.slider.width(that.slider.width() + $(el).outerWidth(true, true));
 
+				totalWidthOfContent += $(el).outerWidth(true, true);
+				that.webSlider("adaptContainerWidth", $(el).outerHeight(true, true));
 
-$(window).ready(function() {
-	qi.widget.web.slider.init()
-})
+							// Adapt the height of the container when images get loaded
+							$(el).find("img").on("load", function() {
+								this.webSlider.adaptContainerWidth($(this).outerHeight(true, true));
+							})
 
-qi.widget.web.slider.init = function() {
+						});
 
-	container = $("#yw1");
-	slider = container.find(".web-slider-slider")
-	leftPaging = container.find(".web-slider-paging.left");
-	rightPaging = container.find(".web-slider-paging.right");
-	totalWidthOfContent = 0; 
+			this.webSlider("adjustPagingVisibility");
+			this.leftPaging.on("click", function() {
+				that.webSlider("left")
+			});
 
-	container.find(".page").each(function(i, el) {
-		slider.width(slider.width() + $(el).outerWidth(true, true));
+			this.rightPaging.on("click", function() {
+				that.webSlider("right")
+			});
+		},
+		adaptContainerWidth : function(childHeight) {
+			if (childHeight > this.height())
+				this.height(childHeight)
+		},
+		adjustPagingVisibility : function() {
+			this.leftPaging.toggle(this.slider.position().left != 0)
+			this.rightPaging.toggle(this.slider.position().left != -totalWidthOfContent + this.width())
+		},
+		left : function() {
+			var newPos = this.slider.position().left + this.find(".page").first().outerWidth(true, true);
 
-		totalWidthOfContent += $(el).outerWidth(true, true);
-		qi.widget.web.slider.adaptContainerWidth($(el).outerHeight(true, true));
+			if (newPos > 0)
+				newPos = 0;
 
-		// Adapt the height of the container when images get loaded
-		$(el).find("img").on("load", function() {
-			qi.widget.web.slider.adaptContainerWidth($(this).outerHeight(true, true));
-		})
+			this.slider.css({
+				left: newPos
+			})
 
-	});
+			this.webSlider("adjustPagingVisibility");
+		},
+		right : function() {
 
-	qi.widget.web.slider.adjustPagingVisibility();
-	leftPaging.on("click", qi.widget.web.slider.navigateLeft)
-	rightPaging.on("click", qi.widget.web.slider.navigateRight)
-}
+			var newPos = this.slider.position().left - this.find(".page").first().outerWidth(true, true);
 
-qi.widget.web.slider.adaptContainerWidth = function(childHeight) {
-	if (childHeight > container.height())
-		container.height(childHeight)
-}
+			if (newPos < -totalWidthOfContent + this.width()) 
+				newPos = -totalWidthOfContent + this.width();
 
-qi.widget.web.slider.navigateLeft = function() {
+			this.slider.css({
+				left: newPos
+			})
 
-	var newPos = slider.position().left + container.find(".page").first().outerWidth(true, true);
+			this.webSlider("adjustPagingVisibility");
+		}
+	};
 
-	if (newPos > 0)
-		newPos = 0;
-
-	slider.css({
-		left: newPos
-	})
-
-	qi.widget.web.slider.adjustPagingVisibility();
-}
-
-qi.widget.web.slider.navigateRight = function() {
-
-	var newPos = slider.position().left - container.find(".page").first().outerWidth(true, true);
-
-	if (newPos < -totalWidthOfContent + container.width()) 
-		newPos = -totalWidthOfContent + container.width();
-
-	slider.css({
-		left: newPos
-	})
-
-	qi.widget.web.slider.adjustPagingVisibility();
-}
-
-qi.widget.web.slider.adjustPagingVisibility = function() {
-	leftPaging.toggle(slider.position().left != 0)
-	rightPaging.toggle(slider.position().left != -totalWidthOfContent + container.width())
-}
+	$.fn.webSlider = function(methodOrOptions) {
+		if ( methods[methodOrOptions] ) {
+			return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+		} else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
+			return methods.init.apply( this, arguments );
+		} else {
+			$.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.tooltip' );
+		}    
+	};
+	
+}( jQuery ));

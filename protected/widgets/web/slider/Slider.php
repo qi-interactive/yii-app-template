@@ -12,11 +12,12 @@ class Slider extends BaseWidget {
 
 	public function run() {
 		$content = ob_get_clean();
-		
-		
 
 		if ($content == null)
 			$content = $this->render("widgets.web.slider.views.defaultContent", array(), true);
+
+		Yii::app()->getClientScript()->registerScript(__CLASS__ . '#' . $this->id, 
+			"var $this->id = $('#{$this->id}').webSlider()", CClientScript::POS_LOAD);
 
 		$this->renderDefaultView(__FILE__, array(
 			"content" => $content

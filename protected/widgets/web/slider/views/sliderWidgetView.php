@@ -3,3 +3,9 @@
 <?php echo $content ?>
 
 </div>
+
+<script>
+
+
+
+</script>

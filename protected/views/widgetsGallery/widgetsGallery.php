@@ -1,6 +1,8 @@
-<div style="border: solid 1px #666; width: 500px;">
+<div style="width: 500px;">
 
 	<?php $this->widget("widgets.web.slider.Slider") ?>
+
+	<br />
 
 	<div style="color: #FFF;">
 		<?php $this->beginWidget("widgets.web.slider.Slider") ?>
@@ -9,12 +11,6 @@
 				<img src="http://placekitten.com/150/150">
 			</div>
 
-
-			<div class="page">
-				<img src="http://placekitten.com/150/150">
-			</div>
-
-
 			<div class="page">
 				<img src="http://placekitten.com/150/150">
 			</div>
@@ -23,11 +19,13 @@
 				<img src="http://placekitten.com/150/150">
 			</div>
 
-
 			<div class="page">
 				<img src="http://placekitten.com/150/150">
 			</div>
 
+			<div class="page">
+				<img src="http://placekitten.com/150/150">
+			</div>
 
 			<div class="page">
 				<img src="http://placekitten.com/150/150">
