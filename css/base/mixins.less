@@ -1,5 +1,13 @@
 // Sizing shortcuts
 .size(@width; @height) {
-  width: @width;
-  height: @height;
+	width: @width;
+	height: @height;
+}
+
+.transition(@duration; @property: all; @function: ease-out) {
+	-webkit-transition: @property @duration @function;
+	-moz-transition: @property @duration @function;
+	-ms-transition: @property @duration @function;
+	-o-transition: @property @duration @function;
+	transition: @property @duration @function;
 }
