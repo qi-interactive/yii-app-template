@@ -26,7 +26,5 @@
     <div id="main">
         <?php echo $content; ?>
     </div>
-
-    hellpppppps
 </body>
 </html>
