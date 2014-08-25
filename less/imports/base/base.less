@@ -22,6 +22,7 @@ body {
   line-height: @line-height-base;
   color: @text-color;
   background-color: @body-bg;
+ // letter-spacing: 10px;
 }
 
 // Reset fonts for relevant elements
@@ -30,16 +31,34 @@ button,
 select,
 textarea {
   font-family: inherit;
-  font-size: inherit;
+  font-size: @font-size-small;
   line-height: inherit;
 }
 
+input[type="text"] {
+  background: #fff;
+  border: 1px solid @gray-light;
+  color: @black;
+  height: 28px;
+  padding-left: 10px;
+  outline: 0px;
+}
+input {
 
+  &:focus {
+    border-color: @very-light-gray;
+  }
+}
+
+input[type="submit"] {
+  font-family: @font-family-base-bold;
+}
 // Links
 
 a {
   color: @link-color;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -56,10 +75,14 @@ button, .btn, a.btn {
   background-color: @button-background-color;
   color: @button-color;
   outline: none;
-  border: solid 1px darken(@button-color, 33.5%);
-  line-height: @font-size-base;
-  padding: 10px;
+  border: none;
+  line-height: 16px;
+  /*padding: 10px;*/
   cursor: pointer;
+  height: 28px;
+  text-align: center;
+  font-size: @font-size-small;
+  font-family: @font-family-base-bold;
 
   &.btn-success {
     background-color: @button-success-background-color;
@@ -76,7 +99,8 @@ button, .btn, a.btn {
   }
 
   &:hover {
-    background: darken(@button-background-color, 5%);
+    background: @very-light-gray;
+    color: @button-color;
   }
 }
 
@@ -84,11 +108,78 @@ button {
   padding-top: 11px;
   padding-bottom: 11px;
 }
+textarea {
+  padding-left: 10px;
+  border: 1px solid @gray-light;
+  outline: 0px;
+  resize: vertical;
 
+  &:focus {
+    border-color: @very-light-gray;
+  }
+}
 // Lists
 // -------------------------
+ul {
+  padding-left: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
 li {
   list-style: none;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+  color: @black;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: @black;
+  opacity:1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: @black;
+  opacity:1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+ color: @black;
+ opacity:1;
+}
+
+
+input:focus::-webkit-input-placeholder {
+  color: rgba(0, 0, 0,0.4);
+}
+textarea:focus::-webkit-input-placeholder {
+  color: rgba(0, 0, 0,0.4);
+}
+input:focus:-moz-placeholder  {
+  color: rgba(0, 0, 0,0.4);
+  opacity:1;
+}
+
+input:focus::-moz-placeholder {
+  color: rgba(0, 0, 0,0.4);
+  opacity:1;
+}
+
+textarea:focus::-moz-placeholder {
+ color: rgba(0, 0, 0,0.4);
+ opacity:1;
+}
+
+input:focus::-ms-input-placeholder{
+  color: rgba(0, 0, 0,0.4);
+  opacity:1;
+}
+
+select {
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 14px;
+  outline: 0px;
 }
 
 .row {overflow: hidden;}

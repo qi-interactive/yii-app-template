@@ -8,14 +8,7 @@
 
     <link rel="stylesheet/less" type="text/css" href="/css/main.less" />
 
-    <script>
-        less = {env:'development'}; 
-    </script>
-    <script src="/js/base/less/less.js" type="text/javascript"></script>
-    
-
     <script type="text/javascript" src="/js/base/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/base/jquery/qunit.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>

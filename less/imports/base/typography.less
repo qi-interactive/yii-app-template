@@ -1,5 +1,21 @@
+
+@font-face {
+	font-family: @font-family-base;
+	font-weight:500; 
+	font-style:normal;
+}
+
+@font-face {
+	font-family: @font-family-base-bold;
+	font-weight:bold;
+	font-style:normal;
+}
+
 p {
 	margin: 0 0 (@line-height-computed / 2);
+	line-height: 20px;
+	color: @black;
+	font-size: @font-size-base;
 }
 
 small,
@@ -28,8 +44,8 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: @headings-font-family;
 	font-weight: @headings-font-weight;
-	line-height: @headings-line-height;
 	color: @headings-color;
+	//letter-spacing: 10px;
 
 	small,
 	.small {
@@ -38,12 +54,32 @@ h1, h2, h3, h4, h5, h6,
 	}
 }
 
-h1,
-h2,
-h3 {
-	margin-top: @line-height-computed;
-	margin-bottom: (@line-height-computed / 2);
+h2, 
+.h2,
+h4,
+.h4 {
+	line-height: 19px;
+}
 
+h3, 
+.h3 {
+	line-height: 36px;
+	padding-top: 30px;
+	margin-bottom: @line-height-computed;
+	margin-top: 0px;
+}
+
+h5,
+.h5 {
+	line-height: 24px;
+}
+
+h1,
+h2
+{
+	padding-top: @line-height-computed;
+	margin-bottom: @line-height-computed;
+	margin-top: 0px;
 	small,
 	.small {
 		font-size: 65%;
