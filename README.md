@@ -1,4 +1,4 @@
 yii-app-template
 ================
 
-Yii-app-template
+Created by Qi Interactive
