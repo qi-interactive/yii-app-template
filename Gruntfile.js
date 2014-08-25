@@ -2,75 +2,67 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		jsdoc : {
-			dist : {
-				src: ['src/**/*.js'], 
-				options: {
-					destination: 'doc',
-					template : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template",
-					configure : "node_modules/grunt-jsdoc/node_modules/ink-docstrap/template/jsdoc.conf.json"
-				}
-			}
-		},
+		module.exports = function(grunt) {
+			grunt.initConfig({
+				pkg: grunt.file.readJSON('package.json'),
 
-		concat: {
-			options: {
-				separator: ";",
-				stripBanners: true,
-			},
-			dist: {
-				src: ['src/**/*.js', '!src/**/specs/**'],
-				dest: 'dist/behaviors.js',
-			},
-			css: {
-				src: ['src/**/*.css'],
-				dest: 'dist/behaviors.css',
-			}
-		},
+				less: {
+					files: {
+						options: {
+						},
+						expand: true,
+						cwd: 'less',
+						src: ['**/*.less', '!base/*.less', '!imports/**/*.less', '../protected/modules/portalModules/**/*.less', '../protected/widgets/**/*.less'],
+						dest: 'css/',
+						ext: '.css'
+					}
+				},
 
-		uglify: {
-			dist: {
-				preserveComments: false,
-				files: {
-					'dist/behaviors.min.js': ['dist/behaviors.js']
-				}
-			}
-		},
+				watch: {
+					protected: {
+						files: ['*'],
+						options: {
+							interrupt: false,
+							livereload: true,
+						},
+					},
+				},
 
-		cssmin: {
-			minify: {
-				expand: true,
-				cwd: 'dist/',
-				src: ['*.css', '!*.min.css'],
-				dest: 'dist/',
-				ext: '.min.css'
-			}
-		},
+				cssmin: {
+					minify: {
+						expand: true,
+						cwd: 'css/',
+						src: ['*.css', '!*.min.css'],
+						dest: 'css/',
+						ext: '.min.css'
+					}
+				},
 
-		mocha: {
-			all: {
-				src: ['src/**/tests/*.html'],
-			},
+				// to be updated
+				uglify: {
+					dist: {
+						preserveComments: false,
+						files: {
+							'dist/behaviors.min.js': ['dist/behaviors.js']
+						}
+					}
+				},
 
-			options: {
-				run: true
-			}
-		},
+				autoprefixer: {
+					run: {
+						src: 'src/**/*.css', 
+					}
+				},
+			});
 
-		autoprefixer: {
-			run: {
-				src: 'src/**/*.css', 
-			}
-		},
+			grunt.loadNpmTasks('grunt-contrib-less');
+			grunt.loadNpmTasks('grunt-contrib-watch');
+			grunt.loadNpmTasks('grunt-autoprefixer');
+			grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+			grunt.loadNpmTasks('grunt-contrib-uglify');
+
+			grunt.registerTask('dist', ['autoprefixer:run', 'uglify:dist', 'cssmin:minify']);
+		};
 	})
-
-grunt.loadNpmTasks('grunt-jsdoc');
-grunt.loadNpmTasks('grunt-contrib-concat');
-grunt.loadNpmTasks('grunt-contrib-uglify');
-grunt.loadNpmTasks('grunt-mocha');
-grunt.loadNpmTasks('grunt-contrib-cssmin');
-grunt.loadNpmTasks('grunt-autoprefixer');
-
-grunt.registerTask('dist', ['mocha:all', 'autoprefixer:run', 'concat:dist', 'concat:css', 'uglify:dist', 'cssmin:minify', 'jsdoc']);
-	// grunt.registerTask('mocha');
 }
