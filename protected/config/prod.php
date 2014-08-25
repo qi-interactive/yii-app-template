@@ -19,21 +19,21 @@ return array(
         'application.controllers.base.*',
         'application.widgets.base.*',
         'application.helpers.*'
-    ),
+        ),
     'modules' => array(
         'user' => array(
             'hash' => 'sha1',
             'sendActivationMail' => true,
             'activeAfterRegister' => false,
             'autoLogin' => true
-        )
-    ),
+            )
+        ),
     // application components
     'components' => array(
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
-        ),
+            ),
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
@@ -41,26 +41,22 @@ return array(
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                ),
             ),
-        ),
-        'errorHandler' => array(
-            // use 'site/error' action to display errors
-            'errorAction' => 'site/error',
-        ),
         'log' => array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
                     'class' => 'CFileLogRoute',
                     'levels' => 'error, warning',
-                ),
+                    ),
                 array(
                     'class' => 'CEmailLogRoute',
                     'levels' => 'error, warning',
                     'emails' => 'marcin.wiatr@cms.icodesign.com',
                     'sentFrom' => 'developernotification@icodesign.com',
                     'filter' => 'CLogFilter'
-                )
+                    )
             // uncomment the following to show log messages on web pages
             /**
               array(
@@ -68,11 +64,11 @@ return array(
               ),
              * */
             ),
+            ),
         ),
-    ),
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
-    'params' => array(
+'params' => array(
     // this is used in contact page
     ),
 );

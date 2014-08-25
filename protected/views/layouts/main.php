@@ -6,9 +6,14 @@
     <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <meta HTTP-EQUIV="Expires" CONTENT="-1">
 
-    <link rel="stylesheet/less" type="text/css" href="/css/main.less" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css" />
+
+    <!--[if lt IE 9]>  
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
 
     <script type="text/javascript" src="/js/base/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/base/helpers.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
